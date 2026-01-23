@@ -1,7 +1,7 @@
 /* Set Font */
 @font-face {
   font-family: windows;
-  src: url(fonts/w95.otf);
+  src: url(../fonts/w95.otf);
 }
 
 body {
