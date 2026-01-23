@@ -6,7 +6,13 @@
     { title: "Gacorain", desc: "Basic Clothesline Monitoring Webapps", link: "https://github.com/tanmch/gacorain" },
     { title: "My DWM", desc: "Personal DWM configs", link: "https://github.com/logasans/My-DWM" },
     { title: "Mango as an Object Vision", desc: "Mango Management Webapps w/Ripeness Detection Using YOLO", link: "https://github.com/tanmch/mov" },
-    { title: "Lampu Server", desc: "PoC Smart Lamp Control Implementation Using Known IoT Protocol and Device", link: "https://github.com/tanmch/lampu-server" },
+    { title: "Lampu Server", desc: "Basic Smart Lamp Control Implementation Using MQTT Protocol ", link: "https://github.com/tanmch/lampu-server" },
+  ]
+
+  const socialMedia = [
+    {title: "Linkedin Profile", class: "fa-brands fa-linkedin" ,link: "https://www.linkedin.com/in/406430325/"},
+    {title: "Instagram Profile", class: "fa-brands fa-instagram" ,link: "https://instagram.com/realdonaldtrump"},
+    {title: "Email", class: "fa-solid fa-envelope" ,link: "mailto:michael.chrs@proton.me"},
   ]
   const lastUpdated = "24 January, 2026. Now with Svelte®"
   const toggleDropdown = () => isDropdownOpen = !isDropdownOpen;
@@ -20,7 +26,9 @@
 
 <main>
   <Window title="Projects" icon="/icon/doc.ico">
-    <nav class="navbar navbar-expand bg-grey p-0">
+    <nav
+            class="navbar navbar-expand bg-grey p-0"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
           <button class="nav-link btn" on:click={() => currentPage= 'home' }><u>H</u>ome</button>
@@ -65,9 +73,11 @@
      <h6><q>Computer Engineering Technology Student of <b>SV-IPB</b></q></h6>
 
      <div class="social-links my-3">
-       <a href="https://www.linkedin.com/in/406430325/"><i class="fa-brands fa-linkedin" aria-label="Linkedin Profile"></i></a>
-       <a href="https://instagram.com/realdonaldtrump"><i class="fa-brands fa-instagram" aria-label="Instagram Profile"></i></a>
-       <a href="mailto:suttanchristian@apps.ipb.ac.id"><i class="fa-solid fa-envelope" aria-label="Email"></i></a>
+       {#each socialMedia as social}
+         <a href={social.link}>
+           <i class={social.class} aria-label={social.title}></i>
+         </a>
+         {/each}
      </div>
 
      <img id="portrait" src="/img/image2.jpg" alt="Self Portrait"><br>
