@@ -13,6 +13,7 @@
     {title: "Linkedin Profile", class: "fa-brands fa-linkedin" ,link: "https://www.linkedin.com/in/406430325/"},
     {title: "Instagram Profile", class: "fa-brands fa-instagram" ,link: "https://instagram.com/realdonaldtrump"},
     {title: "Email", class: "fa-solid fa-envelope" ,link: "mailto:michael.chrs@proton.me"},
+
   ]
   const lastUpdated = "24 January, 2026. Now with Svelte®"
   const toggleDropdown = () => isDropdownOpen = !isDropdownOpen;
