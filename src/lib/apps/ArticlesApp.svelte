@@ -20,7 +20,6 @@
   const BASE = import.meta.env.BASE_URL || '/'
 
   let tab = $state('published') // 'published' | 'drafts'
-  let readingId = $state(null)
 
   $effect(() => { loadShipped() })
 
@@ -28,7 +27,7 @@
   $effect(() => {
     const id = articleStore.openRequest
     if (id && articleStore.shippedLoaded) {
-      if (getArticle(id)) readingId = id
+      if (getArticle(id)) articleStore.readingId = id
       articleStore.openRequest = null
     }
   })
@@ -37,7 +36,7 @@
     (articleStore.shippedLoaded, articleStore.local, publishedArticles())
   )
   let drafts = $derived((articleStore.local, draftArticles()))
-  let reading = $derived(readingId ? getArticle(readingId) : null)
+  let reading = $derived(articleStore.readingId ? getArticle(articleStore.readingId) : null)
 
   function editIn(id) {
     articleStore.editRequest = id
@@ -47,7 +46,7 @@
   function remove(a) {
     const scope = articlesUseDb ? 'dari database (hilang untuk semua pengunjung)' : 'dari browser ini'
     if (!confirm(`Hapus "${a.title}" ${scope}?`)) return
-    if (readingId === a.id) readingId = null
+    if (articleStore.readingId === a.id) articleStore.readingId = null
     deleteArticle(a.id)
   }
 
@@ -56,10 +55,17 @@
   const isNew = (iso) => Date.now() - new Date(iso).getTime() < 14 * 24 * 3600 * 1000
 </script>
 
+<svelte:head>
+  {#if reading}
+    <title>{reading.title} | Michael95 Gazette</title>
+    <meta name="description" content={reading.excerpt || reading.title} />
+  {/if}
+</svelte:head>
+
 <div class="articles-app">
   {#if reading}
     <div class="writer-row" style="margin:0;">
-      <button class="w95-btn" onclick={() => (readingId = null)}>← Semua Artikel</button>
+      <button class="w95-btn" onclick={() => (articleStore.readingId = null)}>← Semua Artikel</button>
       {#if auth.loggedIn}
         <button class="w95-btn" onclick={() => editIn(reading.id)}>Edit</button>
         <button class="w95-btn" onclick={() => exportArticleAsHtml(reading)}>Export .html</button>
@@ -114,7 +120,7 @@
               </div>
               <div class="card-body">
                 <div class="card-title-row">
-                  <button class="card-title" onclick={() => (readingId = a.id)}>{a.title}</button>
+                  <button class="card-title" onclick={() => (articleStore.readingId = a.id)}>{a.title}</button>
                   <span class="badge-draft">DRAFT</span>
                 </div>
                 <span class="card-date">Diperbarui {fmt(a.updated)}</span>
@@ -145,7 +151,7 @@
             </div>
             <div class="card-body">
               <div class="card-title-row">
-                <button class="card-title" onclick={() => (readingId = a.id)}>{a.title}</button>
+                <button class="card-title" onclick={() => (articleStore.readingId = a.id)}>{a.title}</button>
                 {#if isNew(a.created)}<span class="badge-new">NEW!</span>{/if}
                 {#if auth.loggedIn && a.published && !isShipped(a.id)}
                   {#if articlesUseDb}
@@ -158,7 +164,7 @@
               <span class="card-date">📅 {fmt(a.created)}</span>
               <p class="card-excerpt">{a.excerpt}</p>
               <div class="card-actions">
-                <button class="w95-btn" onclick={() => (readingId = a.id)}>☞ Baca</button>
+                <button class="w95-btn" onclick={() => (articleStore.readingId = a.id)}>☞ Baca</button>
                 {#if auth.loggedIn}
                   <button class="w95-btn" onclick={() => editIn(a.id)}>Edit</button>
                   {#if a.published && articleStore.local.some((l) => l.id === a.id)}

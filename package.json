@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node_modules/.bin/vite",
-    "build": "node scripts/generate-rss.mjs && node_modules/.bin/vite build",
+    "build": "node scripts/generate-rss.mjs && node_modules/.bin/vite build && node scripts/prerender-articles.mjs",
+    "prerender": "node scripts/prerender-articles.mjs",
     "preview": "node_modules/.bin/vite preview",
     "test": "node tests/smoke.mjs",
     "rss": "node scripts/generate-rss.mjs"

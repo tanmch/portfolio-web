@@ -49,6 +49,7 @@ export const articleStore = $state({
   local: load(),      // draft + suntingan pemilik (localStorage)
   editRequest: null,  // id yang diminta dibuka di Article Writer
   openRequest: null,  // id yang diminta dibuka di My Articles (deep-link)
+  readingId: null,    // id yang sedang dibaca (dipakai App.svelte untuk URL share)
   dbError: null,      // pesan error sinkronisasi Supabase terakhir
 })
 
@@ -298,7 +299,7 @@ export function saveArticle({ id, title, html, cover }) {
   // Menyunting artikel shipped? → buat salinan lokal ber-id sama (tetap published).
   const shipped = id ? articleStore.shipped.find((a) => a.id === id) : null
   const article = {
-    id: id || 'art-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    id: id || uniqueSlugId(title),
     title: title || 'Untitled',
     html: cleanHtml,
     cover: finalCover,
@@ -390,4 +391,17 @@ function escapeHtml(s = '') {
 
 function slugify(s = 'artikel') {
   return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'artikel'
+}
+
+/**
+ * ID artikel baru = slug judul (URL enak dibaca: /articles/judul-artikel).
+ * Batas 64 karakter sinkron dengan CHECK articles_id_format di
+ * supabase/schema.sql; bila judul kembar, tambahkan akhiran -2, -3, dst.
+ */
+function uniqueSlugId(title) {
+  const base = slugify(title).slice(0, 60).replace(/-+$/, '')
+  let candidate = base
+  let n = 2
+  while (getArticle(candidate)) candidate = `${base}-${n++}`
+  return candidate
 }

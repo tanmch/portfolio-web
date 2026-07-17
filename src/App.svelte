@@ -8,7 +8,7 @@
    * (salinan lama: backups/App.svelte.original).
    */
   import { onMount } from 'svelte'
-  import { wm, openApp } from './lib/wm/wm.svelte.js'
+  import { wm, openApp, toggleMaximize } from './lib/wm/wm.svelte.js'
   import Window95 from './lib/wm/Window95.svelte'
   import Taskbar from './lib/wm/Taskbar.svelte'
   import StartMenu from './lib/wm/StartMenu.svelte'
@@ -47,8 +47,19 @@
     const id = ALIASES[seg[0]] || seg[0]
     const app = getApp(id)
     if (!app) return
-    if (id === 'articles' && seg[1]) articleStore.openRequest = decodeURIComponent(seg[1])
+    const wasOpen = wm.windows.some((w) => w.appId === id)
+    if (id === 'articles') {
+      if (seg[1]) articleStore.openRequest = decodeURIComponent(seg[1])
+      else articleStore.readingId = null
+    }
     launch(app)
+    // Deep-link artikel dari luar (mesin pencari/share): jendela baru langsung
+    // fullscreen agar pembaca fokus ke isi; desktop tetap bisa dijelajahi
+    // lewat tombol restore.
+    if (id === 'articles' && seg[1] && !wasOpen) {
+      const win = wm.windows.find((w) => w.appId === 'articles')
+      if (win && !win.maximized) toggleMaximize(win.id)
+    }
   }
 
   // Sinkronkan URL dengan jendela aktif (tanpa membanjiri history).
@@ -58,7 +69,10 @@
     // Jangan menimpa URL deep-link sebelum route() pertama sempat jalan:
     // efek ini bisa terpicu lebih dulu saat belum ada jendela sama sekali.
     if (!active && lastPath === null) return
-    const path = BASE + (active ? active.appId : '')
+    let path = BASE + (active ? active.appId : '')
+    // Artikel sedang dibaca → URL menyertakan slug agar bisa disalin & dibagikan.
+    if (active?.appId === 'articles' && articleStore.readingId)
+      path += '/' + encodeURIComponent(articleStore.readingId)
     if (typeof history !== 'undefined' && path !== lastPath && location.pathname !== path) {
       history.replaceState(null, '', path)
       lastPath = path
