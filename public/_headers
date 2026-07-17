@@ -1,0 +1,12 @@
+# Security headers (SEC-03) — dibaca oleh Netlify/Cloudflare Pages.
+# GitHub Pages MENGABAIKAN file ini; di sana perlindungan datang dari
+# <meta> CSP yang di-inject saat build (vite.config.js). frame-ancestors
+# dan nosniff hanya efektif lewat header, jadi didefinisikan di sini.
+# Jaga agar nilai CSP sinkron dengan vite.config.js.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://webneko.net 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://darsborwuqogeyflcqno.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

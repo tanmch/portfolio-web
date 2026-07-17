@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Gacorain",
+    "desc": "Basic Clothesline Monitoring Webapps",
+    "link": "https://github.com/tanmch/gacorain",
+    "icon": "/icon/Lamp 2.ico",
+    "tags": ["IoT", "Web"]
+  },
+  {
+    "title": "My DWM",
+    "desc": "Personal DWM configs",
+    "link": "https://github.com/logasans/My-DWM",
+    "icon": "/icon/computer2.ico",
+    "tags": ["Linux"]
+  },
+  {
+    "title": "Mango as an Object Vision",
+    "desc": "Mango Management Webapps w/Ripeness Detection Using YOLO",
+    "link": "https://github.com/tanmch/mov",
+    "icon": "/icon/Chip 2.ico",
+    "tags": ["AI/ML", "Web"]
+  },
+  {
+    "title": "Lampu Server",
+    "desc": "Basic Smart Lamp Control Implementation Using MQTT Protocol ",
+    "link": "https://github.com/tanmch/lampu-server",
+    "icon": "/icon/Lamp 2.ico",
+    "tags": ["IoT", "MQTT"]
+  }
+]

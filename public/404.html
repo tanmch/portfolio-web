@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Mengalihkan…</title>
+  <!--
+    Fallback SPA untuk hosting statis (GitHub Pages dsb.):
+    permintaan /about, /articles/xyz, dll. jatuh ke 404 ini, lalu dialihkan
+    ke index dengan ?p=<path> — App.svelte memulihkannya menjadi rute asli.
+
+    KONFIGURASI: pathSegmentsToKeep
+      0 → situs di root domain (tanmch.github.io / custom domain)
+      1 → GitHub *project* pages (tanmch.github.io/portfolio-web)
+          (samakan juga `base` di vite.config.js, mis. '/portfolio-web/')
+  -->
+  <script>
+    var pathSegmentsToKeep = 0;
+    var l = window.location;
+    var base = l.pathname.split('/').slice(0, pathSegmentsToKeep + 1).join('/') + '/';
+    var p = l.pathname.slice(base.length);
+    l.replace(l.origin + base + (p ? '?p=' + encodeURIComponent(p) : '') + l.hash);
+  </script>
+</head>
+<body>Mengalihkan…</body>
+</html>

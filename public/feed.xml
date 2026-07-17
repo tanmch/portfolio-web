@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>A Web Portfolio | Michael</title>
+    <link>https://michaeldoesthejob.dev/articles</link>
+    <atom:link href="https://michaeldoesthejob.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Michael's Portofolio — Now with Interactive Desktop!</description>
+    <language>id</language>
+    <lastBuildDate>Mon, 13 Jul 2026 07:45:59 GMT</lastBuildDate>
+    <item>
+      <title>Selamat Datang di Blog Michael95</title>
+      <link>https://michaeldoesthejob.dev/articles/welcome</link>
+      <guid isPermaLink="true">https://michaeldoesthejob.dev/articles/welcome</guid>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Artikel pertama di blog bergaya Windows 95 ini. Di sini saya akan menulis tentang kuliah, IoT, Linux, dan hal-hal yang saya kerjakan…</description>
+      <enclosure url="https://michaeldoesthejob.dev/img/siro.png" type="image/png" length="0"/>
+    </item>
+  </channel>
+</rss>

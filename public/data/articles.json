@@ -1,0 +1,11 @@
+[
+  {
+    "id": "welcome",
+    "title": "Selamat Datang di Blog Michael95",
+    "cover": "/img/siro.png",
+    "excerpt": "Artikel pertama di blog bergaya Windows 95 ini. Di sini saya akan menulis tentang kuliah, IoT, Linux, dan hal-hal yang saya kerjakan…",
+    "html": "<p>Halo! Ini artikel pertama di blog <b>Michael95</b>.</p><p><img src=\"/img/siro.png\" alt=\"Siro\"></p><p>Di sini saya akan menulis tentang perkuliahan di <b>SV-IPB</b>, eksperimen <i>IoT</i>, konfigurasi Linux, dan hal-hal lain yang saya kerjakan. Artikel ditulis langsung dari <i>Article Writer</i> di desktop ini, lalu dipublikasikan ke repositori.</p><p>Jangan lupa elus kucingnya :p</p>",
+    "created": "2026-07-12T00:00:00.000Z",
+    "updated": "2026-07-12T00:00:00.000Z"
+  }
+]

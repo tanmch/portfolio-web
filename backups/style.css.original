@@ -1,0 +1,80 @@
+/* Set Font */
+@font-face {
+  font-family: windows;
+  src: url(../fonts/w95.otf);
+}
+
+body {
+    background-color: #008080 !important;
+    font-family: 'windows', sans-serif !important;
+    padding: 20px !important;
+}
+
+a {
+  color: rgb(85, 150, 190);
+}
+
+/* --- CLASSES --- */ 
+
+.peh {
+    font-size: 16px;
+}
+
+/* Window */
+.window-border {
+    border: 8px; 
+    border-style:groove;
+    border-color:#C0C0C0;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+.window {
+    height: fit-content;
+    background-color: #C0C0C0;
+    border: 2px groove #000;
+}
+.window-content {
+    background-color: #F5F5F5;
+}
+
+.title-bar {
+    display: block;
+    background-color: #000080;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+}
+.bg-grey {
+    background-color: #C0C0C0;
+}
+.dropdown-menu .dropdown-item:hover{
+  background-color: #000080;
+  color: #F5F5F5;
+}
+
+/*bootstrap*/ 
+.navbar .nav-link {
+  font-family: 'windows', sans-serif;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
+  font-size: 14px;
+}
+/*stop*/
+
+/* --- IDs--- */ 
+#portrait{
+  display: block;
+  margin: 0 auto;
+  width: 18.5%;
+  height: auto;
+}
+
+#header {
+  display: block;
+  margin: 0 auto;
+
+}
